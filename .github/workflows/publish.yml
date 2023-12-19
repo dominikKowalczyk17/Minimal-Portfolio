@@ -13,6 +13,14 @@ jobs:
       - name: git-checkout
         uses: actions/checkout@v2
 
+      - name: Check if build branch exists
+        run: |
+          if ! git show-ref --quiet refs/heads/build; then
+            git checkout -b build
+          else
+            git checkout build
+          fi
+
       - name: Install all dependencies
         run: npm install
 
