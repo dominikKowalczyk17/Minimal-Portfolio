@@ -17,7 +17,7 @@ jobs:
     - name: Run git-publish-subdir-action
       env:
         REPO: self
-        BRANCH: build
+        BRANCH: master
         FOLDER: dist
         MESSAGE: Build: ({sha}) {msg}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
