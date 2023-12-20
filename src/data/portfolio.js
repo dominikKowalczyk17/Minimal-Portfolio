@@ -1,7 +1,7 @@
 export default [
   {
     title: "Coffe Shop",
-    imgUrl: "",
+    imgUrl: "/assets/coffee_shop.png",
     stack: ["HTML", "CSS", "JavaScript"],
     link: "https://github.com/dominikKowalczyk17/Coffe-Shop",
   },
