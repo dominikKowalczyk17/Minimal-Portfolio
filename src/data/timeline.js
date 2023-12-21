@@ -4,7 +4,7 @@ export default [
     title: "Junior Frontend Developer",
     duration: "6 months",
     details:
-      "I'm entrusted with the care of existing websites within the Polsat Media group, ensuring their smooth operation. Additionally, I'm actively involved in crafting new websites for our expanding clientele. In this dynamic role, I leverage technologies such as JavaScript, SCSS, ES6, and Velocity to bring innovative digital experiences to life.",
+      "I'm entrusted with the care of existing websites within the Polsat Media group, ensuring their smooth operation. Additionally, I'm actively involved in crafting new websites for our expanding clientele as well as developing new features for existing websites. In this dynamic role, I leverage technologies such as JavaScript, SCSS, ES6, and Velocity to bring innovative digital experiences to life.",
   },
   {
     year: "2021",
