@@ -5,9 +5,25 @@ import emailjs from "@emailjs/browser";
 const Contact = () => {
   const form = useRef();
   const [isMessageSent, setIsMessageSent] = useState(false);
+  const [inputErrors, setInputErrors] = useState({});
 
   const sendEmail = (e) => {
     e.preventDefault();
+
+    // Validate inputs
+    const errors = {};
+    const formElements = form.current.elements;
+    for (let i = 0; i < formElements.length - 1; i++) {
+      const input = formElements[i];
+      if (input.type !== "submit" && input.value.trim() === "") {
+        errors[input.name] = "Please fill out the form";
+      }
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setInputErrors(errors);
+      return;
+    }
 
     emailjs
       .sendForm(
@@ -21,6 +37,7 @@ const Contact = () => {
           console.log(result.text);
           form.current.reset();
           setIsMessageSent(true);
+          setInputErrors({});
 
           // Reset the message after a few seconds (optional)
           setTimeout(() => {
@@ -45,22 +62,41 @@ const Contact = () => {
           <Title>Contact</Title>
           <input
             type="text"
-            name="to_name"
+            name="to_email"
             placeholder="Name"
-            className="p-2 bg-transparent border-2 rounded-md focus:outline-none"
+            className={`p-2 bg-transparent border-2 rounded-md focus:outline-none ${
+              inputErrors.to_email ? "border-red-500 mb-2" : ""
+            }`}
           />
+          {inputErrors.to_email && (
+            <div className="text-red-500 text-xs">{inputErrors.to_email}</div>
+          )}
           <input
             type="email"
             name="from_name"
             placeholder="Email"
-            className="my-2 p-2 bg-transparent border-2 rounded-md focus:outline-none"
+            className={`my-2 p-2 bg-transparent border-2 rounded-md focus:outline-none ${
+              inputErrors.from_name ? "border-red-500" : ""
+            }`}
           />
+          {inputErrors.from_name && (
+            <div className="text-red-500 text-xs mb-2">
+              {inputErrors.from_name}
+            </div>
+          )}
           <textarea
             name="message"
             placeholder="Message"
             rows="10"
-            className="p-2 mb-4 bg-transparent border-2 rounded-md focus:outline-none"
+            className={`p-2 mb-2 bg-transparent border-2 rounded-md focus:outline-none ${
+              inputErrors.message ? "border-red-500" : ""
+            }`}
           />
+          {inputErrors.message && (
+            <div className="text-red-500 text-xs mb-2">
+              {inputErrors.message}
+            </div>
+          )}
           <input
             type="submit"
             value="Send"
